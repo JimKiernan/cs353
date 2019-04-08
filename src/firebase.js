@@ -1,12 +1,12 @@
 import firebase from 'firebase'
 
-var config = {
-    apiKey: "AIzaSyDYUbXkoxFFnrnvlVnhYhnceM95R1df6S4",
-    authDomain: "cs353-d8f0c.firebaseapp.com",
-    databaseURL: "https://cs353-d8f0c.firebaseio.com",
-    projectId: "cs353-d8f0c",
-    storageBucket: "cs353-d8f0c.appspot.com",
-    messagingSenderId: "230540988017"
+  var config = {
+    apiKey: "AIzaSyC0LZPZrs0BRdZoPi0IPsWAi9S8XNxMjNc",
+    authDomain: "my-project-1542623734498.firebaseapp.com",
+    databaseURL: "https://my-project-1542623734498.firebaseio.com",
+    projectId: "my-project-1542623734498",
+    storageBucket: "my-project-1542623734498.appspot.com",
+    messagingSenderId: "917427983539"
   };
  
 firebase.initializeApp(config);

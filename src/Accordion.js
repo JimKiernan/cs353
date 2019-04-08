@@ -30,7 +30,7 @@ export default class AccordionDisplay extends Component {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
 	        <div className="image" className="centre">
-	        	<Image alt = "img" src={this.props.image} /> 
+	        	<Image alt = {this.props.alt} src="../img/ex1.jpg" /> 
 	        </div>
 	        <div className="details">
 	         <p>{this.props.details}</p>

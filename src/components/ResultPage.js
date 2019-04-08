@@ -93,11 +93,11 @@ render() {
        <Container>
           <SegmentDisplay>
                 
-                  {this.state.result.map((item) => {
-                    return (
-                      <AccordionDisplay key={item.id} title = {item.name} image={item.photo} details={item.description} />
-                    )
-                  })}
+            {this.state.result.map((item) => {
+              return (
+                <AccordionDisplay key={item.id} title = {item.name} image={item.photo} details={item.description} />
+                  )
+            })}
                 
               
           </SegmentDisplay>

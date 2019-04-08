@@ -6,15 +6,22 @@ import InputDisplay from './InputDisplay';
 import {BrowserRouter,Route, Link,Redirect} from 'react-router-dom';
 import ResultPage from './ResultPage';
 
-
 const countryOptions = [
  
   { key: 'kh', value: 'Cambodia', flag: 'kh', text: 'Cambodia' },
   { key: 'cn', value: 'China', flag: 'cn', text: 'China' },
   { key: 'jp', value: 'Japan', flag: 'jp', text: 'Japan' },
   { key: 'vn', value: 'Vietnam', flag: 'vn', text: 'Vietnam' },
-  { key: 'kr', value: 'South Korea', flag: 'kr', text: 'South Korea' }
-
+  { key: 'kr', value: 'South Korea', flag: 'kr', text: 'South Korea' },
+  { key: 'hk', value: 'Hong Kong', flag: 'hk', text: 'Hong Kong' },
+  { key: 'my', value: 'Malaysia', flag: 'my', text: 'Malaysia' },
+  { key: 'id', value: 'Indonesia', flag: 'id', text: 'Indonesia' },
+  { key: 'mm', value: 'Myanmar', flag: 'mm', text: 'Myanmar' },
+  { key: 'sg', value: 'Singapore', flag: 'sg', text: 'Singapore' },
+  { key: 'tw', value: 'Taiwan', flag: 'tw', text: 'Taiwan' },
+  { key: 'ph', value: 'Philippines', flag: 'ph', text: 'Philippines' },
+  { key: 'th', value: 'Thailand', flag: 'th', text: 'Thailand' },
+  { key: 'in', value: 'India', flag: 'in', text: 'India' }
 ];
 const activityOptions = [
  
