@@ -21,7 +21,7 @@ class ClubEventPage extends Component {
 	        	<Segment>{this.props.details}</Segment>
 	        </div>
 	        <div className="comments">
-	        	
+	        	<Comments />
 	        </div>
 
 		}

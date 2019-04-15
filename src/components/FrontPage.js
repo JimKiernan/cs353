@@ -35,7 +35,7 @@ class FrontPage extends Component {
   constructor() {
     super();
     this.state = {
-      userCountry: 'none',
+      userCountry: '',
       userCity: '',
       userActivity: '',      
       result: [],
@@ -113,10 +113,10 @@ class FrontPage extends Component {
                  
                      <Segment>
                        <Form.Field>
-                        <DropdownDisplay name="Enter your country" title="userCity" options= {countryOptions} onChange={this.handleCountryChange} value={this.state.userCountry} />
+                        <DropdownDisplay name="Enter your country" title="userCountry" options= {countryOptions} onChange={this.handleCountryChange} value={this.state.userCountry} />
                       </Form.Field>
                      </Segment>
-                  
+
                    
                      <Segment>     
                      <Form.Field>                  

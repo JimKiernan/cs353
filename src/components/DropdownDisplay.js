@@ -9,7 +9,7 @@ const DropdownDisplay = (props) => {
   return(
     <div className="dropdown">
       <Dropdown
-        name = {props.name}
+        placeholder = {props.name}
         title = {props.title}
          value = {props.value}
         fluid

@@ -86,7 +86,7 @@ render() {
     <div className="results">
      <h1> Results </h1>
      {
-         result.length==0 && <div>No results found</div>
+         result.length===0 && <div>No results found</div>
      }
      { 
          result.length > 0 && (
