@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../firebase.js';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { Container } from 'semantic-ui-react'
-import AccordionDisplay from '../Accordion';
-import SegmentDisplay from '../SegmentDisplay';
+import AccordionDisplay from './Accordion';
 import TopMenu from '../TopMenu';
 
 
@@ -11,10 +10,7 @@ class ResultPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // userCountry: '',
-      // userCity: '',
-      // userActivity: '',
-
+      
       name: '', //key
       photo: '',
       website: '',
@@ -26,9 +22,7 @@ class ResultPage extends Component {
     }
     
   }
-  onSearchSubmit(term1, term2, term3){
-
-  }
+  
   componentDidMount() {
 
     const userCountry = this.props.location.state.userCountry;
@@ -50,19 +44,21 @@ class ResultPage extends Component {
       let results = snapshot.val();
       console.log("results are " + snapshot.key);
 
-      {/*  if(snapshot.numChildren()>1){ */}
-          let newState = [];
+      let newState = [];
 
-          for (let item in results) {
-            console.log("item is " + item);
-            newState.push({
-                id: results[item].id,
-                name: item,
-                photo: results[item].Photo,
-                description: results[item].location
-
-            });
-          }
+      for (let item in results) {
+        console.log("item is " + item);
+        newState.push({
+        id: results[item].id,
+        country: userCountry,
+        city: userCity,
+        activity: userActivity,
+        name: item,
+        photo: results[item].Photo,
+        description: results[item].location,
+        date: null
+        });
+      }
           this.setState({
             result: newState
           });
@@ -91,16 +87,16 @@ render() {
      { 
          result.length > 0 && (
        <Container>
-          <SegmentDisplay>
+          <Segment raised>
                 
             {this.state.result.map((item) => {
               return (
-                <AccordionDisplay key={item.id} title = {item.name} image={item.photo} details={item.description} />
-                  )
+                <AccordionDisplay country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} image={item.photo} details={item.description} date={item.date} buttonText="Join" />
+               )
             })}
                 
               
-          </SegmentDisplay>
+          </Segment>
          </Container>)
         }
         </div>

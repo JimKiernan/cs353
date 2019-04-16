@@ -42,8 +42,8 @@ class FrontPage extends Component {
       toResults: false
     }
     this.handleChange = this.handleChange.bind(this);
-        this.handleCountryChange = this.handleCountryChange.bind(this);
-        this.handleActivityChange = this.handleActivityChange.bind(this);
+    this.handleCountryChange = this.handleCountryChange.bind(this);
+    this.handleActivityChange = this.handleActivityChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -69,11 +69,6 @@ class FrontPage extends Component {
     const userCountry = this.state.userCountry;
     const userCity = this.state.userCity;
     const userActivity = this.state.userActivity;
-     
-    //Pass down to results page
-
-    //this.props.onSubmit(this.state.userCountry, this.state.userCity, this.state.userActivity);
-    // Redirect to results page
     //need to check if the user has inputted values first
     this.setState({
       toResults: true
@@ -82,7 +77,6 @@ class FrontPage extends Component {
   
   //call the results page <Results /> with prop this.state.userCity, userCountry & userAcitivity
   render() {
-
 
     if(this.state.toResults === true){
       return <Redirect to= {{
@@ -109,35 +103,31 @@ class FrontPage extends Component {
                
         <Container>
 
-                <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
                  
-                     <Segment>
-                       <Form.Field>
-                        <DropdownDisplay name="Enter your country" title="userCountry" options= {countryOptions} onChange={this.handleCountryChange} value={this.state.userCountry} />
-                      </Form.Field>
-                     </Segment>
+            <Segment>
+              <Form.Field>
+                  <DropdownDisplay name="Enter your country" title="userCountry" options= {countryOptions} onChange={this.handleCountryChange} value={this.state.userCountry} />
+              </Form.Field>
+            </Segment>
 
                    
-                     <Segment>     
-                     <Form.Field>                  
-                        <InputDisplay name="userCity" placeholder='Enter your city' onChange={this.handleChange} value={this.state.userCity} />
-                     </Form.Field>
-                     </Segment>
-                   
+            <Segment>     
+              <Form.Field>                  
+                <InputDisplay name="userCity" placeholder='Enter your city' onChange={this.handleChange} value={this.state.userCity} />
+              </Form.Field>
+            </Segment>                  
                   
                     
-                     <Segment >
-                     <Form.Field>
-                         <DropdownDisplay name="Enter your activity" title="userActivity" options= {activityOptions} onChange={this.handleActivityChange} value={this.state.userActivity} />
-                      </Form.Field>
-                      </Segment>
-                    
-               
-               
-
-                  <button>Search</button>
-                </Form>
-         </Container>
+            <Segment >
+              <Form.Field>
+                <DropdownDisplay name="Enter your activity" title="userActivity" options= {activityOptions} onChange={this.handleActivityChange} value={this.state.userActivity} />
+              </Form.Field>
+            </Segment>             
+                              
+            <button>Search</button>
+          </Form>
+        </Container>
        
       </div>
     );

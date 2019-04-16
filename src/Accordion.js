@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, Image } from 'semantic-ui-react'
+import { Accordion, Icon, Image, Segment } from 'semantic-ui-react'
 import './Accordion.css'; 
-import SaveButton from './SaveButton'
+import SaveButton from './SaveButton';
+
 
 
 export default class AccordionDisplay extends Component {
@@ -24,22 +25,22 @@ export default class AccordionDisplay extends Component {
     const { activeIndex } = this.state;
     return(
 	  <Accordion>
-	  <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+  	  <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
           <Icon name='dropdown' />
-        {this.props.title}
-        </Accordion.Title>
+          <Segment.Group horizontal>
+            <Segment>{this.props.title}</Segment>
+            <Segment><SaveButton country={this.props.country} city={this.props.city} activity={this.props.activity} name={this.props.name} date={this.props.date} /></Segment>
+          </Segment.Group>
+       </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
-	        <div className="image" className="centre">
-	        	<Image alt = {this.props.alt} src="../img/ex1.jpg" /> 
-	        </div>
-	        <div className="details">
-	         <p>{this.props.details}</p>
-	         </div>
-	      <SaveButton />
-        </Accordion.Content>
+	        <Segment.Group horizontal>
+	        	<Segment> <Image alt = {this.props.alt} src="../img/ex1.jpg" /> </Segment>
+	          <Segment> <p>{this.props.details}</p></Segment>	         
+	        </Segment.Group>
+       </Accordion.Content>
 
-       </Accordion>
-      );
-   }
+    </Accordion>
+    );
+  }
 }
 
