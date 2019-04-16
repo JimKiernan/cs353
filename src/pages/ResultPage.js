@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import firebase from '../firebase.js';
-import { Card, Icon, Image } from 'semantic-ui-react'
-import { Container } from 'semantic-ui-react'
-import AccordionDisplay from './Accordion';
-import TopMenu from '../TopMenu';
+import { Card, Icon, Image, Segment } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
+import AccordionDisplay from '../components/Accordion';
+import TopMenu from '../components/TopMenu';
 
 
 class ResultPage extends Component {
@@ -85,20 +85,19 @@ render() {
          result.length===0 && <div>No results found</div>
      }
      { 
-         result.length > 0 && (
-       <Container>
-          <Segment raised>
-                
+     result.length > 0 && (
+      <Container>
+         
+          <Segment raised>   
             {this.state.result.map((item) => {
               return (
                 <AccordionDisplay country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} image={item.photo} details={item.description} date={item.date} buttonText="Join" />
                )
-            })}
-                
-              
-          </Segment>
-         </Container>)
-        }
+            })}                
+          </Segment> 
+          
+      </Container>)
+    }
         </div>
       );
     }

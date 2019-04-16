@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import firebase from '../firebase.js';
-import { Card, Icon, Image, Container, Comment } from 'semantic-ui-react'
+import { Card, Icon, Image, Container, Comment, Segment } from 'semantic-ui-react'
 
 
 class Comments extends Component {
 	constructor(props) {
 	    super(props);
 		this.state = {
-		  uid: '',
-	      username: '',
-	      commentText: '',      
-	      postTime: '',
-	      result: []
+			userCountry: this.props.userCountry,
+			userCity: this.props.userCity,
+			userActivity:this.props.userActivity,
+			uid: '',
+		    username: '',
+		    commentText: '',      
+		    postTime: '',
+		    result: []
 	    }
 	 }
 	 componentDidMount() {
@@ -20,9 +23,9 @@ class Comments extends Component {
 	    const rootRef = db.ref();
 
 	    //get reference to keys
-	    const countryRef = rootRef.child('Country').child(userCountry);
-	    const cityRef = countryRef.child(userCity);
-	    const activityRef = cityRef.child(userActivity);
+	    const countryRef = rootRef.child('Country').child(this.state.userCountry);
+	    const cityRef = countryRef.child(this.state.userCity);
+	    const activityRef = cityRef.child(this.state.userActivity);
 	    const commentsRef = activityRef.child('Comments'); 
 
 	    //Query database, obtain results
@@ -49,23 +52,24 @@ class Comments extends Component {
 	}
 
 	render(){
-		let { result } = this.state;
+		let { result } = this.state; //es6 syntax; destructuring assignment
 
-		return (
+	    return (
 
-		    <div className="results">
-		    <h2> Comments </h2>
-			{
-				result.length===0 && <div><Segment>No comments yet</Segment></div>
-		     }
-		     { 
-		        result.length > 0 && (
-		         {result.map((item) => {
-		         
-		          return (
+	    <div className="comments">
+	     <h1> Comments </h1>
+	     {
+	         result.length===0 && <div>No comments yet</div>
+	     }
+	     {   
 
-			         <Segment>
-						<Comment>
+	      result.length > 0 && (
+      		<Container>       
+         
+            {this.state.result.map((item) => {
+              return( 
+              	<Segment>
+					<Comment>
 							<Comment.Avatar></Comment.Avatar>
 							<Comment.Content>
 								<Comment.Author>{item.username}</Comment.Author>
@@ -73,13 +77,13 @@ class Comments extends Component {
 								<Comment.Metadata>{item.postTime}</Comment.Metadata>
 							</Comment.Content>
 						</Comment>
-					</Segment>	
-					)
-				})}	
-		        )
-			}
-			</div>
-		);
-	}
-}
+				</Segment>	)
+				    })}       
+      </Container>)
+    	}
+        </div>
+      );
+    }
+ }
+			     
 export default Comments;

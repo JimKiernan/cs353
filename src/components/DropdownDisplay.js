@@ -2,8 +2,6 @@ import React from 'react'
 import { Dropdown, Flag, Segment } from 'semantic-ui-react'
 
 
-
-
 const DropdownDisplay = (props) => {
 
   return(

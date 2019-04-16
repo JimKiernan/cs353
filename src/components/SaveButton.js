@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import firebase from '../firebase.js';
 
@@ -17,14 +17,18 @@ import firebase from '../firebase.js';
 	    
 	//get reference to userList
 	const usersRef = rootRef.child('UserList');	   
-  	
+
+	
 	//get id for current user if there is one
 	if (firebase.auth().currentUser !== null){
 	   var userID = firebase.auth().currentUser.uid;
 	   var userRef = usersRef.child(userID);
 
+	   //create a saved section for user and get the key for this secion
+		var userCommentsKey = userRef.push().key;  	
+
 	   // Create a new saved item for user and get a key for it
-	 	var key = userRef.push().key;
+	 	var key = userRef.child(userCommentsKey).push().key;
 
 		//Add the specific club/event to this new item
 		var data =  {

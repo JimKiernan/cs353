@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import firebase from '../firebase.js';
-import DropdownDisplay from './DropdownDisplay';
+import DropdownDisplay from '../components/DropdownDisplay';
 import { Segment, Container, Form } from 'semantic-ui-react';
-import InputDisplay from './InputDisplay';
+import InputDisplay from '../components/InputDisplay';
 import {BrowserRouter,Route, Link,Redirect} from 'react-router-dom';
 import ResultPage from './ResultPage';
 
@@ -44,7 +44,6 @@ class FrontPage extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleCountryChange = this.handleCountryChange.bind(this);
     this.handleActivityChange = this.handleActivityChange.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e) {
