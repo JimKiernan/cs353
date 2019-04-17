@@ -28,12 +28,12 @@ class ResultPage extends Component {
     const userCountry = this.props.location.state.userCountry;
     const userCity = this.props.location.state.userCity;
     const userActivity = this.props.location.state.userActivity;
-    console.log(userCountry)
+    console.log(userCountry + userCity +userActivity);
     
     //set up firebase
     const db = firebase.database();
     const rootRef = db.ref();
-    
+    console.log("setting up DB");
     //get reference to keys
     const countryRef = rootRef.child('Country').child(userCountry);
     const cityRef = countryRef.child(userCity);
@@ -41,35 +41,42 @@ class ResultPage extends Component {
 
     //Query database, obtain results
     activityRef.on('value', (snapshot) => {
-      let results = snapshot.val();
+      var results = snapshot.val();
       console.log("results are " + snapshot.key);
 
-      let newState = [];
+      var newState = [];
 
       for (let item in results) {
         console.log("item is " + item);
+
+        var ref = activityRef.child(item);//gives ref to club
+        
+        ref.on("value", (snapshot) => {
+         
+          var email = snapshot.child("Email:").val();
+          var photo = snapshot.child("Photo:").val();
+          var website = snapshot.child("Website:").val();
+          var id = snapshot.child("id:").val();
+          console.log("Email "+ email);
+
         newState.push({
-        id: results[item].id,
-        country: userCountry,
-        city: userCity,
-        activity: userActivity,
-        name: item,
-        photo: results[item].Photo,
-        description: results[item].location,
-        date: null
-        });
-      }
-          this.setState({
+          id: id,
+          country: userCountry,
+          city: userCity,
+          activity: userActivity,
+          name: item,
+          photo: photo,
+          email: email,
+          website: website
+          
+          });
+        this.setState({
             result: newState
           });
-        {/* }
-        else{
-          this.setState({
-            
-            result: [ {name: results, photo:null, description: null}]
-          } );
-        } */}
-        
+        });
+             
+      }
+                    
     });
   }
 
@@ -91,7 +98,7 @@ render() {
           <Segment raised>   
             {this.state.result.map((item) => {
               return (
-                <AccordionDisplay country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} image={item.photo} details={item.description} date={item.date} buttonText="Join" />
+                <AccordionDisplay country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} alt={item.photo}  image={item.photo} email={item.email} website={item.website} buttonText="Join" />
                )
             })}                
           </Segment> 

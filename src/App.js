@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter,Route, Link} from 'react-router-dom';
 import './App.css';
-import ex1 from './img/ex1.jpg';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { Container, Segment } from 'semantic-ui-react'
 import AccordionDisplay from './components/Accordion';
@@ -20,11 +19,11 @@ class App extends Component {
         <BrowserRouter>
            <div>
             <TopMenu />
-             <Route path="/" exact component ={FrontPage} />
-             <Route path="/dashboard" exact component ={DashboardPage} />
+             <Route path="/" exact component={FrontPage} />
+             <Route path="/dashboard" exact component={DashboardPage} />
              <Route path="/events" exact component={EventsPage} />
-             <Route path="/results" exact component ={ResultPage} />
-             <Route path="/clubs/:name" exact component ={ClubEventPage} />
+             <Route path="/results" exact component={ResultPage} />
+             <Route path="/clubs/:name" exact component={ClubEventPage} />
 
             </div>
           </BrowserRouter>

@@ -23,9 +23,9 @@ class Comments extends Component {
 	    const rootRef = db.ref();
 
 	    //get reference to keys
-	    const countryRef = rootRef.child('Country').child(this.state.userCountry);
-	    const cityRef = countryRef.child(this.state.userCity);
-	    const activityRef = cityRef.child(this.state.userActivity);
+	    const countryRef = rootRef.child('Country').child(this.props.userCountry);
+	    const cityRef = countryRef.child(this.props.userCity);
+	    const activityRef = cityRef.child(this.props.userActivity);
 	    const commentsRef = activityRef.child('Comments'); 
 
 	    //Query database, obtain results
@@ -57,7 +57,7 @@ class Comments extends Component {
 	    return (
 
 	    <div className="comments">
-	     <h1> Comments </h1>
+	     <h3> Comments </h3>
 	     {
 	         result.length===0 && <div>No comments yet</div>
 	     }
@@ -70,13 +70,13 @@ class Comments extends Component {
               return( 
               	<Segment>
 					<Comment>
-							<Comment.Avatar></Comment.Avatar>
-							<Comment.Content>
-								<Comment.Author>{item.username}</Comment.Author>
-								<Comment.Text>{item.commentText}</Comment.Text>
-								<Comment.Metadata>{item.postTime}</Comment.Metadata>
-							</Comment.Content>
-						</Comment>
+						<Comment.Avatar></Comment.Avatar>
+						<Comment.Content>
+							<Comment.Author>{item.username}</Comment.Author>
+							<Comment.Text>{item.commentText}</Comment.Text>
+							<Comment.Metadata>{item.postTime}</Comment.Metadata>
+						</Comment.Content>
+					</Comment>
 				</Segment>	)
 				    })}       
       </Container>)

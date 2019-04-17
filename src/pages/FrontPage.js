@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from '../firebase.js';
+
 import DropdownDisplay from '../components/DropdownDisplay';
 import { Segment, Container, Form } from 'semantic-ui-react';
 import InputDisplay from '../components/InputDisplay';

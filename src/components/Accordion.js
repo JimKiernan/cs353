@@ -13,13 +13,12 @@ export default class AccordionDisplay extends Component {
       activeIndex: -1,
       title:this.props.title
     };
-    console.log(props.children);
   }
 
   componentDidMount(){
 
     var str = this.props.title;
-    var str2 = this.props.title;
+    
     str = str.replace(/\s/g, '');
     this.setState({
       title:str
@@ -43,14 +42,18 @@ export default class AccordionDisplay extends Component {
 	  <Accordion>
   	  <Accordion.Title >
           <Segment.Group horizontal>
-           {/* need to put in userCountry, city and activty as props to the clubeventpage*/}
             <Segment>
             <Link to={{
               pathname:`/clubs/${this.state.title}`,
               state: {
                  name: this.props.title,
-                 image: this.props.image
-              }
+                 image: this.props.image,
+                 email:this.props.email,
+                 website:this.props.website,
+                 userCountry: this.props.country,  
+                 userCity:this.props.city, 
+                 userActivity:this.props.activity
+                }
 
               }}>
               <h2>{this.props.title}</h2>
@@ -61,12 +64,14 @@ export default class AccordionDisplay extends Component {
        </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
 	        <Segment.Group horizontal>
-
-	        	<Segment> <Image alt = {this.props.alt} src={this.props.image} /> </Segment>
-	          <Segment> <p>{this.props.details}</p></Segment>	 
-            <Segment><Announcements /></Segment>
-               
+	        	<Segment> <img alt = {this.props.alt} src={process.env.PUBLIC_URL + '/img/' + this.props.image} /> </Segment>
+	          
+            <Segment>
+              <Announcements userCountry={this.props.country} userCity={this.props.city} userActivity={this.props.activity} />
+            </Segment>                          
 	        </Segment.Group>
+          <Segment><h3>Email: {this.props.email} </h3></Segment>   
+          <Segment><h3><a href={this.props.website}>Website</a></h3></Segment>   
        </Accordion.Content>
        <Icon name='plus'  active={activeIndex === 0} index={0} onClick={this.handleClick} />
 
