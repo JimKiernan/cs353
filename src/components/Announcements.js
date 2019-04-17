@@ -14,7 +14,7 @@ import firebase from '../firebase.js';
 	    }
 	 }
 	 componentDidMount() {
-	 	var announcement = "none";
+	 var announcement = this.state.current;
 	  //set up firebase
 	    const db = firebase.database();
 	    const rootRef = db.ref();
@@ -32,7 +32,7 @@ import firebase from '../firebase.js';
 	    		//var announcementsRef = ref.child("Announcements");
 	    		ref.on("value", function(snapshot) {
 	    			var ref2 = snapshot.child("Announcements/1")
-	    			announcement = ref2.val();
+	    			 announcement = ref2.val();
 		    		
 		    		console.log("Announcement is: "+ announcement);
 		    	 });

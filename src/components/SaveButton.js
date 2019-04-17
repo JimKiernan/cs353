@@ -5,7 +5,17 @@ import firebase from '../firebase.js';
  class SaveButton extends Component {
 	constructor(props) {
     super(props);
-    
+     this.state = {
+     	country: this.props.country,
+     	city:this.props.city,
+     	club:this.props.club,
+     	name:this.props.name
+
+    };
+     this.handleClick = this.handleClick.bind(this);
+  }
+  componentDidMount(){
+  	console.log("In savebutton: " + this.props.country);
   }
 
   handleClick(e) {
@@ -16,30 +26,34 @@ import firebase from '../firebase.js';
 	const rootRef = db.ref();
 	    
 	//get reference to userList
-	const usersRef = rootRef.child('UserList');	   
-
-	
+	const userRef = rootRef.child('UserList');	   
+	//var test = userRef.child("user1").push("hello");
+		
 	//get id for current user if there is one
 	if (firebase.auth().currentUser !== null){
 	   var userID = firebase.auth().currentUser.uid;
-	   var userRef = usersRef.child(userID);
+	   //var userRef = usersRef.child(userID);
 
 	   //create a saved section for user and get the key for this secion
-		var userCommentsKey = userRef.push().key;  	
-
 	   // Create a new saved item for user and get a key for it
-	 	var key = userRef.child(userCommentsKey).push().key;
+		var userCommentKey = userRef.child(userID).push().key;
+
 
 		//Add the specific club/event to this new item
-		var data =  {
-			country: this.props.country,
-			city: this.props.city,
-			activity: this.props.activity,
-			name:this.props.name, 
-			date: this.props.date
-		};
-		userRef.child(key).update(data);
+		
+		userRef.child(userCommentKey).push({
+			"country": this.props.country,
+			"city": this.props.city,
+			"activity": this.props.activity,
+			"name":this.props.name, 
+			"date": this.props.date
+		});
 	}
+	
+	userRef.child("user1").push({			
+			"name": this.state.name,
+			"club": this.state.club
+		});
   }
 
 	render(){

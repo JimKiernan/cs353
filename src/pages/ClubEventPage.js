@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Comments from '../components/Comments';
-import {Image, Segment} from 'semantic-ui-react';
+import {Image, Segment, Container} from 'semantic-ui-react';
 import CommentBox from '../components/CommentBox';
 import firebase from '../firebase.js';
 import Announcements from '../components/Announcements';
@@ -30,6 +30,7 @@ class ClubEventPage extends Component {
  
 		    return (
 		    	<div>
+		    		<Container>
 				    <div className="name">
 				     	<Segment><h1> {this.state.name} </h1></Segment>
 				    </div>
@@ -38,20 +39,22 @@ class ClubEventPage extends Component {
 			        		<Image alt = {this.state.name} src={process.env.PUBLIC_URL + '/img/' + this.props.location.state.image} /> 
 			        	</Segment>
 			        	<Segment>
-			        		<div><h3>Email: {this.props.location.state.email}</h3></div>
-			        		<div><h3><a href={this.props.location.state.website}>Website</a></h3></div>
+			        		<Segment><h3>Email: {this.props.location.state.email}</h3></Segment>
+			        		<Segment><h3><a href={this.props.location.state.website}>Website</a></h3></Segment>
+			        		  <Segment><h3> Location: {this.props.location.state.location} </h3></Segment>  
 			        	</Segment>
 			        	<Segment>              
 			        		<Announcements userCountry={this.state.userCountry} userCity={this.state.userCity} userActivity={this.state.userActivity} />
 						</Segment>
 			        </Segment.Group>
-			       
+			       	
 			        <div className="commentInput">
-						<CommentBox userCountry = {this.state.userCountry} userCity={this.state.userCity} userActivity={this.state.userActivity} loggedin={this.state.loggedin} />
+						<CommentBox name={this.state.name} userCountry = {this.state.userCountry} userCity={this.state.userCity} userActivity={this.state.userActivity} loggedin={this.state.loggedin} />
 			        </div>
 			         <div className="comments">
-			        	<Segment><Comments userCountry = {this.state.userCountry} userCity={this.state.userCity} userActivity={this.state.userActivity} /></Segment>
+			        	<Segment><Comments name={this.state.name} userCountry = {this.state.userCountry} userCity={this.state.userCity} userActivity={this.state.userActivity} /></Segment>
 			        </div> 
+			        </Container>
 			    </div>
 	        );
 		}

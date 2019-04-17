@@ -11,7 +11,8 @@ export default class AccordionDisplay extends Component {
     super(props);
     this.state = {
       activeIndex: -1,
-      title:this.props.title
+      title:this.props.title,
+      location: "See announcements for current training location"
     };
   }
 
@@ -23,7 +24,12 @@ export default class AccordionDisplay extends Component {
     this.setState({
       title:str
     });
-    console.log(this.props.title);
+    console.log("location is " +this.props.location);
+    if(this.props.location !== "Training Ground"){
+      this.setState({
+        location: this.props.location
+      });
+    } 
 
   }
   
@@ -50,6 +56,7 @@ export default class AccordionDisplay extends Component {
                  image: this.props.image,
                  email:this.props.email,
                  website:this.props.website,
+                 location: this.state.location,
                  userCountry: this.props.country,  
                  userCity:this.props.city, 
                  userActivity:this.props.activity
@@ -59,7 +66,7 @@ export default class AccordionDisplay extends Component {
               <h2>{this.props.title}</h2>
              </Link>
             </Segment>
-            <Segment><SaveButton buttonText={this.props.buttonText} country={this.props.country} city={this.props.city} activity={this.props.activity} name={this.props.name} date={this.props.date} /></Segment>
+            <Segment><SaveButton buttonText={this.props.buttonText} country={this.props.country} city={this.props.city} activity={this.props.activity} club={this.props.club} name={this.props.name} date={this.props.date} /></Segment>
           </Segment.Group>
        </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
@@ -70,8 +77,10 @@ export default class AccordionDisplay extends Component {
               <Announcements userCountry={this.props.country} userCity={this.props.city} userActivity={this.props.activity} />
             </Segment>                          
 	        </Segment.Group>
-          <Segment><h3>Email: {this.props.email} </h3></Segment>   
-          <Segment><h3><a href={this.props.website}>Website</a></h3></Segment>   
+          <Segment><h2>Email:</h2><h3> {this.props.email} </h3></Segment>   
+          <Segment><h2><a href={this.props.website}>Website</a></h2></Segment>   
+          <Segment><h2>Location: </h2> <h3> {this.state.location} </h3></Segment>   
+
        </Accordion.Content>
        <Icon name='plus'  active={activeIndex === 0} index={0} onClick={this.handleClick} />
 

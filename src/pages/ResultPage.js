@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import firebase from '../firebase.js';
-import { Card, Icon, Image, Segment } from 'semantic-ui-react';
+import {  Segment } from 'semantic-ui-react';
 import { Container } from 'semantic-ui-react';
 import AccordionDisplay from '../components/Accordion';
-import TopMenu from '../components/TopMenu';
 
 
 class ResultPage extends Component {
@@ -33,12 +32,12 @@ class ResultPage extends Component {
     //set up firebase
     const db = firebase.database();
     const rootRef = db.ref();
-    console.log("setting up DB");
+    
     //get reference to keys
     const countryRef = rootRef.child('Country').child(userCountry);
     const cityRef = countryRef.child(userCity);
     const activityRef = cityRef.child(userActivity);
-
+    console.log("setting up DB");
     //Query database, obtain results
     activityRef.on('value', (snapshot) => {
       var results = snapshot.val();
@@ -57,6 +56,7 @@ class ResultPage extends Component {
           var photo = snapshot.child("Photo:").val();
           var website = snapshot.child("Website:").val();
           var id = snapshot.child("id:").val();
+          var location = snapshot.child("Location:").val();
           console.log("Email "+ email);
 
         newState.push({
@@ -67,7 +67,8 @@ class ResultPage extends Component {
           name: item,
           photo: photo,
           email: email,
-          website: website
+          website: website,
+          location: location
           
           });
         this.setState({
@@ -98,7 +99,7 @@ render() {
           <Segment raised>   
             {this.state.result.map((item) => {
               return (
-                <AccordionDisplay country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} alt={item.photo}  image={item.photo} email={item.email} website={item.website} buttonText="Join" />
+                <AccordionDisplay name={item.name} club={item} country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} alt={item.photo}  image={item.photo} email={item.email} website={item.website} location={item.location} buttonText="Join" />
                )
             })}                
           </Segment> 

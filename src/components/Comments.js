@@ -10,6 +10,7 @@ class Comments extends Component {
 			userCountry: this.props.userCountry,
 			userCity: this.props.userCity,
 			userActivity:this.props.userActivity,
+			name: this.props.name,
 			uid: '',
 		    username: '',
 		    commentText: '',      
@@ -21,34 +22,39 @@ class Comments extends Component {
 	  //set up firebase
 	    const db = firebase.database();
 	    const rootRef = db.ref();
-
+	    var newState = [];
 	    //get reference to keys
 	    const countryRef = rootRef.child('Country').child(this.props.userCountry);
 	    const cityRef = countryRef.child(this.props.userCity);
 	    const activityRef = cityRef.child(this.props.userActivity);
-	    const commentsRef = activityRef.child('Comments'); 
-
+	    const clubRef = activityRef.child(this.state.name); 
+	    const commentsRef = clubRef.child("Comments")
 	    //Query database, obtain results
 	    commentsRef.on('value', (snapshot) => {
-	      let results = snapshot.val();
-	      console.log("results are " + snapshot.key);
-	      
-	          let newState = [];
+	      //var newState = [];
+	      let results = snapshot.val(); 
+	      console.log(results);
+	      for(let item in results){
+	      	 console.log("item is " + item);
+	      	 var comment = snapshot.child(item).val();
+	      	//var author = snapshot.child(item).author;
+	      	//var time = snapshot.child(item).time;
+	      	 newState.push({
+	      	 //	username: author,
+	       // // uid: item,
+	       //   commentText: comment,
+	       // // postTime: time
+	      	 	commentText: comment,
+	      	 });
+	      	 this.setState({
 
-	          for (let item in results) {
-	            console.log("item is " + item);
-	            newState.push({
-	                username: results[item].author,
-	                uid: item,
-	                commentText: results[item].text,
-	                postTime: results[item].time
-
-	            });
-	          }
-	          this.setState({
-	            result: newState
-	          });	       
+	       		 commentText: comment,
+	       		 result: newState
+	       });
+	      }
+	              
 	   	 });
+
 	}
 
 	render(){
