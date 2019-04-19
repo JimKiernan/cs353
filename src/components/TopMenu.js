@@ -18,6 +18,14 @@ class TopMenu extends React.Component {
         >
           Home
         </Menu.Item>
+         <Menu.Item
+         as={Link} to="/login"
+          name='login'
+          active={activeItem === 'login'}
+          onClick={this.handleItemClick}
+        >
+          Login
+        </Menu.Item>
         <Menu.Item
          as={Link} to="/dashboard"
           name='dashboard'
@@ -26,14 +34,7 @@ class TopMenu extends React.Component {
         >
           Dashboard
         </Menu.Item>
-        <Menu.Item
-         as={Link} to="/events"
-          name='events'
-          active={activeItem === 'events'}
-          onClick={this.handleItemClick}
-        >
-          Events
-        </Menu.Item>
+       
       </Menu>
     )
   }

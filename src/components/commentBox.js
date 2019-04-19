@@ -12,7 +12,9 @@ export default class CommentBox extends Component{
 		  uid: '',
 	      username: '',
 	      commentText: '',      
-	      postTime: ''
+	      postTime: '',
+	      name: this.props.name,
+	      loggedin: this.props.loggedin
 	    }
 	    this.handleSubmit = this.handleSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
@@ -28,6 +30,12 @@ export default class CommentBox extends Component{
 	    const cityRef = countryRef.child(this.props.userCity);
 	    const activityRef = cityRef.child(this.props.userActivity);
 	   //const commentRef = cityRef.child('Comments');
+
+	   if (firebase.auth().currentUser !== null){
+	   		this.setState({
+	   			loggedin:true
+	   		})
+	   }	
 
 	} 
 	 handleChange=function(e,{value}){
@@ -55,6 +63,7 @@ export default class CommentBox extends Component{
 	   		this.setState({
 	      		uid: userID
 	    	});
+
 	    	//create a new comment for the club, and obtain its key	    	
 		   	var commentsKey = commentsRef.push().key;
 
@@ -67,27 +76,27 @@ export default class CommentBox extends Component{
 	  			username:name
 		    	}); 
  			}
-
+ 			console.log("name is "+ name);
 	    	
   			//set the time comment was posted
 		   	var date = new Date();
-		   	var y = d.getFullYear();
-		   	var m = d.getMonth() + 1;
-		   	var d = d.getDate();
-		   	var mins = d.getMinutes();
-		   	var hour = d.getHours();
+		   	var y = date.getFullYear();
+		   	var m = date.getMonth() + 1;
+		   	var d = date.getDate();
+		   	var mins = date.getMinutes();
+		   	var hour = date.getHours();
 		   	var time = d + "/" + m + "/" + y +"/" + " " + hour + ":"+ mins;
 	 		this.setState({
 	  			postTime:time
 		    }); 			
-  			
+  			console.log(time);
 
 		   //put the comment in the comments section of the club in Firebase
 		   var comment = {
 		   		author: this.state.username,
-		   		uid: this.state.uid,
+		   		uid: userID,
 		   		text: this.state.commentText,
-		   		time: this.state.postTime
+		   		time: time
 		   };
 		   //var updates['/Comments/' + newCommentKey] = comment;
 		   commentsRef.child(commentsKey).update(comment);	   
@@ -103,7 +112,7 @@ export default class CommentBox extends Component{
 				<Container>
 		            <Form onSubmit={this.handleSubmit}>                 
 		                <Form.Field>
-		 				<TextArea disabled= {!this.props.loggedin} name="comment" placeholder='Leave a comment' value={this.state.commentText} onChange={this.handleChange} />	
+		 				<TextArea disabled= {!this.state.loggedin} name="comment" placeholder='Leave a comment' value={this.state.commentText} onChange={this.handleChange} />	
 		 				<Button>Comment</Button>
 		 				</Form.Field>
 		 			</Form>

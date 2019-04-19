@@ -10,6 +10,7 @@ import ResultPage from './pages/ResultPage';
 import DashboardPage from './pages/DashboardPage';
 import EventsPage from './pages/EventsPage';
 import ClubEventPage from './pages/ClubEventPage';
+import Authen from './components/Authen';
 
 class App extends Component {  
 
@@ -24,10 +25,10 @@ class App extends Component {
              <Route path="/events" exact component={EventsPage} />
              <Route path="/results" exact component={ResultPage} />
              <Route path="/clubs/:name" exact component={ClubEventPage} />
-
+              <Route path="/login" exact component={Authen} />
             </div>
           </BrowserRouter>
-                 
+         {/* <Authen />*/}
 
       </div>
     );

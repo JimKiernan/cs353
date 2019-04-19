@@ -52,12 +52,12 @@
   			});
   			//set the time comment was posted
 		   	var date = new Date();
-		   	var y = d.getFullYear();
-		   	var m = d.getMonth() + 1;
-		   	var d = d.getDate();
-		   	var mins = d.getMinutes();
-		   	var hour = d.getHours();
-		   	var time = d + "/" + m + "/" + y +"/" + " " + hour + ":"+ mins;
+		   	var y = date.getFullYear();
+		   	var m = date.getMonth() + 1;
+		   	var d = date.getDate();
+		   	var mins = date.getMinutes();
+		   	var hour = date.getHours();
+		   	var time = date + "/" + m + "/" + y +"/" + " " + hour + ":"+ mins;
 	 		this.setState({
 	  			postTime:time
 		    }); 			

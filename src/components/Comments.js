@@ -12,6 +12,7 @@ class Comments extends Component {
 			userActivity:this.props.userActivity,
 			name: this.props.name,
 			uid: '',
+			id:'',
 		    username: '',
 		    commentText: '',      
 		    postTime: '',
@@ -34,26 +35,53 @@ class Comments extends Component {
 	      //var newState = [];
 	      let results = snapshot.val(); 
 	      console.log(results);
-	      for(let item in results){
-	      	 console.log("item is " + item);
-	      	 var comment = snapshot.child(item).val();
-	      	//var author = snapshot.child(item).author;
-	      	//var time = snapshot.child(item).time;
-	      	 newState.push({
-	      	 //	username: author,
-	       // // uid: item,
-	       //   commentText: comment,
-	       // // postTime: time
-	      	 	commentText: comment,
-	      	 });
-	      	 this.setState({
+	      
+	      	if(this.state.result.length===0){ //load all comments
+	      		for(let item in results){
+		      	 console.log("item is " + item);
+		      	 var comment = snapshot.child(item).child("text").val();
+		      	 var uid = snapshot.child(item).child("uid").val();
+		      	var author = snapshot.child(item).child("author").val();
+		      	var time = snapshot.child(item).child("time").val();
+	      		 newState.push({
+			      	 	username: author,
+			        	id: item,
+			        	uid: uid,
+			        	commentText: comment,
+			       		postTime: time
+			      	 	
+			      	 });
+			      	  this.setState({
+			       		 commentText: comment,
+			       		 result: newState
+	       			});
+			  }
+			} else{ //load newest comment
 
-	       		 commentText: comment,
-	       		 result: newState
-	       });
-	      }
-	              
-	   	 });
+				var length = Object.keys(results).length;
+				console.log(length-1);
+				var resultArray = Object.entries(results);
+				var item = resultArray[length-1][0];
+				console.log(item);
+		      	 var comment = snapshot.child(item).child("text").val();
+		      	 var uid = snapshot.child(item).child("uid").val();
+		      	var author = snapshot.child(item).child("author").val();
+		      	var time = snapshot.child(item).child("time").val();
+		      	 newState.push({
+			      	 	username: author,
+			        	id: item,
+			        	uid: uid,
+			        	commentText: comment,
+			       		postTime: time
+			      	 	
+			      	 });
+			      	  this.setState({
+			       		 commentText: comment,
+			       		 result: newState
+	       			});
+		     }	      	
+	 	            
+	 });
 
 	}
 
