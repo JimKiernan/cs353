@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-
 import DropdownDisplay from '../components/DropdownDisplay';
 import { Segment, Container, Form } from 'semantic-ui-react';
+import Button from '@material-ui/core/Button';
 import InputDisplay from '../components/InputDisplay';
 import {BrowserRouter,Route, Link,Redirect} from 'react-router-dom';
 import ResultPage from './ResultPage';
 
+
+ 
 const countryOptions = [
  
   { key: 'kh', value: 'Cambodia', flag: 'kh', text: 'Cambodia' },
@@ -92,13 +94,14 @@ class FrontPage extends Component {
     return (
 
       <div className='app'>
-    
+        <Container>
         <header>
             <div className="wrapper">
-              <h1>Failte Asia</h1>
+              <h1>Fáilte Asia</h1>
                              
             </div>
-        </header>       
+        </header>    
+        </Container>   
                
         <Container>
 
@@ -124,7 +127,9 @@ class FrontPage extends Component {
               </Form.Field>
             </Segment>             
                               
-            <button>Search</button>
+            <Button color="primary" size="large" variant = "outlined" onClick={this.handleSubmit} >
+              Search
+            </Button>
           </Form>
         </Container>
        

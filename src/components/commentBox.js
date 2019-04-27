@@ -11,6 +11,7 @@ export default class CommentBox extends Component{
 		this.state = {
 		  uid: '',
 	      username: '',
+	      useremail: '',
 	      commentText: '',      
 	      postTime: '',
 	      name: this.props.name,
@@ -69,11 +70,14 @@ export default class CommentBox extends Component{
 
 	    	//set the username variable
 	    	var name;
+	    	var email;
 	    	var user = firebase.auth().currentUser;
 	    	if (user != null) {
  			 name = user.displayName;
+ 			 email = user.email;
  			 this.setState({
-	  			username:name
+	  			username:name,
+	  			
 		    	}); 
  			}
  			console.log("name is "+ name);
@@ -94,6 +98,7 @@ export default class CommentBox extends Component{
 		   //put the comment in the comments section of the club in Firebase
 		   var comment = {
 		   		author: this.state.username,
+		   		
 		   		uid: userID,
 		   		text: this.state.commentText,
 		   		time: time

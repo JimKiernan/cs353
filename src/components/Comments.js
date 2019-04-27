@@ -38,23 +38,23 @@ class Comments extends Component {
 	      
 	      	if(this.state.result.length===0){ //load all comments
 	      		for(let item in results){
-		      	 console.log("item is " + item);
-		      	 var comment = snapshot.child(item).child("text").val();
-		      	 var uid = snapshot.child(item).child("uid").val();
-		      	var author = snapshot.child(item).child("author").val();
-		      	var time = snapshot.child(item).child("time").val();
-	      		 newState.push({
-			      	 	username: author,
-			        	id: item,
-			        	uid: uid,
-			        	commentText: comment,
-			       		postTime: time
-			      	 	
-			      	 });
-			      	  this.setState({
-			       		 commentText: comment,
-			       		 result: newState
-	       			});
+			      	 console.log("item is " + item);
+			      	 var comment = snapshot.child(item).child("text").val();
+			      	 var uid = snapshot.child(item).child("uid").val();
+			      	var author = snapshot.child(item).child("author").val();
+			      	var time = snapshot.child(item).child("time").val();
+		      		 newState.push({
+				      	 	username: author,
+				        	id: item,
+				        	uid: uid,
+				        	commentText: comment,
+				       		postTime: time
+				      	 	
+				      	 });
+				      	  this.setState({
+				       		 commentText: comment,
+				       		 result: newState
+		       			});
 			  }
 			} else{ //load newest comment
 
@@ -66,9 +66,11 @@ class Comments extends Component {
 		      	 var comment = snapshot.child(item).child("text").val();
 		      	 var uid = snapshot.child(item).child("uid").val();
 		      	var author = snapshot.child(item).child("author").val();
+		      	
 		      	var time = snapshot.child(item).child("time").val();
 		      	 newState.push({
 			      	 	username: author,
+			      	 	
 			        	id: item,
 			        	uid: uid,
 			        	commentText: comment,
