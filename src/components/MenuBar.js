@@ -19,7 +19,7 @@ import NoteAdd from '@material-ui/icons/NoteAdd';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn';
 import Dashboard from '@material-ui/icons/Dashboard'
-
+import Toast from './Toast';
 import { withRouter } from "react-router-dom";
 import firebase from '../firebase.js';
 
@@ -52,6 +52,7 @@ class MenuBar extends Component {
      super(props);
       this.state = {
         top: false,
+        open:false
         
       };
       if (firebase.auth().currentUser !== null){
@@ -63,6 +64,7 @@ class MenuBar extends Component {
              loggedOut:true       
         }
     }
+    this.signOut = this.signOut.bind(this);
 
    }
 
@@ -90,7 +92,7 @@ class MenuBar extends Component {
         .then(()=>{
           this.props.history.push("/");
         });
-        alert("You have logged out");
+        this.setState({open:true});
       }
 
     
@@ -98,8 +100,10 @@ class MenuBar extends Component {
    
     
     return (
-
-    <div className="App">
+      <div className="MenuBar">
+        {
+          this.state.open===true && (<div><Toast open={this.state.open} message="You have logged out" /></div>)
+        }    
       <AppBar position="static">
         <Toolbar>
         

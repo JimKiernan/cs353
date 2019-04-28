@@ -6,7 +6,6 @@ import InputDisplay from '../components/InputDisplay';
 import {BrowserRouter,Route, Link,Redirect} from 'react-router-dom';
 import ResultPage from './ResultPage';
 
-
  
 const countryOptions = [
  

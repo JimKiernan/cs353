@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import Button from '@material-ui/core/Button';
 import firebase from '../firebase.js';
+import Toast from './Toast';
 
  class SaveButton extends Component {
 	constructor(props) {
@@ -9,17 +10,29 @@ import firebase from '../firebase.js';
      	country: this.props.country,
      	city:this.props.city,
      	club:this.props.club,
-     	name:this.props.name
+     	name:this.props.name,
+     	open:false,
+     	
 
     };
      this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-  	console.log("In savebutton: " + this.props.country);
-  }
+  	 if (firebase.auth().currentUser !== null){
+        this.setState({
+             loggedin:true     
+        }); 
+      }else{
+            this.setState({
+              loggedin:false
+        });
+      }  
+ }
 
   handleClick(e) {
   	e.preventDefault();
+  	 this.setState({ open: true }); //for toast alert
+  	 console.log(this.state.open);
 
   	//set up firebase
 	const db = firebase.database();
@@ -59,8 +72,16 @@ import firebase from '../firebase.js';
 
 	render(){
 
+
 		return(
-			<Button onClick={this.handleClick}>{this.props.buttonText}</Button>
+			<div> 
+			{
+				(this.state.open===true && this.state.loggedin===true ) && (<div><Toast open={this.state.open} message="You have joined this club" /></div>)
+			}
+			
+				 <Button color="primary" variant = "outlined" onClick={this.handleClick}>{this.props.buttonText}</Button>
+				
+			</div>
 		);
 	}
 

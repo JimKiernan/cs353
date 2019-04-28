@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import firebase from '../firebase.js';
 import ReactDOM from 'react-dom';
-import { Button, TextArea, Container, Form } from 'semantic-ui-react'
+import {  TextArea, Container, Form } from 'semantic-ui-react';
+import Button from '@material-ui/core/Button';
 
 
 export default class CommentBox extends Component{
@@ -118,7 +119,7 @@ export default class CommentBox extends Component{
 		            <Form onSubmit={this.handleSubmit}>                 
 		                <Form.Field>
 		 				<TextArea disabled= {!this.state.loggedin} name="comment" placeholder='Leave a comment' value={this.state.commentText} onChange={this.handleChange} />	
-		 				<Button>Comment</Button>
+		 				 <Button color="primary" size="large" variant = "outlined" >Comment</Button>
 		 				</Form.Field>
 		 			</Form>
 		 		</Container>

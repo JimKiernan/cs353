@@ -4,6 +4,8 @@ import './Accordion.css';
 import SaveButton from './SaveButton';
 import { Link } from 'react-router-dom';
 import Announcements from './Announcements';
+import Toast from './Toast';
+import firebase from '../firebase.js';
 
 
 export default class AccordionDisplay extends Component {
@@ -12,7 +14,8 @@ export default class AccordionDisplay extends Component {
     this.state = {
       activeIndex: -1,
       title:this.props.title,
-      location: "See announcements for current training location"
+      location: "See announcements for current training location",
+
     };
   }
 
@@ -66,7 +69,7 @@ export default class AccordionDisplay extends Component {
               <h2>{this.props.title}</h2>
              </Link>
             </Segment>
-            <Segment><SaveButton buttonText={this.props.buttonText} email={this.props.email} location={this.props.location} website={this.props.website} country={this.props.country} city={this.props.city} activity={this.props.activity} club={this.props.club} name={this.props.name} image={this.props.image} /></Segment>
+            <Segment><SaveButton buttonText={this.props.buttonText} email={this.props.email} location={this.props.location} website={this.props.website} country={this.props.country} city={this.props.city} activity={this.props.activity} club={this.props.club} name={this.props.name} image={this.props.image}  /></Segment>
           </Segment.Group>
        </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
