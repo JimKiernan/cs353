@@ -26,34 +26,35 @@ import firebase from '../firebase.js';
 	const rootRef = db.ref();
 	    
 	//get reference to userList
-	const userRef = rootRef.child('UserList');	   
+	const userListRef = rootRef.child('UserList');	   
 	//var test = userRef.child("user1").push("hello");
 		
 	//get id for current user if there is one
 	if (firebase.auth().currentUser !== null){
 	   var userID = firebase.auth().currentUser.uid;
-	   //var userRef = usersRef.child(userID);
+	   console.log(userID);
+	   var userRef = userListRef.child(userID);
+	   var userRefKey = userListRef.child(userID).key;
+	   console.log(userRefKey);
 
 	   //create a saved section for user and get the key for this secion
 	   // Create a new saved item for user and get a key for it
-		var userCommentKey = userRef.child(userID).push().key;
+		var userCommentKey = userListRef.child(userID).key;		
 
-
-		//Add the specific club/event to this new item
-		
-		userRef.child(userCommentKey).push({
+		//Add the specific club/event to this new item		
+		userRef.push({
 			"country": this.props.country,
 			"city": this.props.city,
 			"activity": this.props.activity,
 			"name":this.props.name, 
-			"date": this.props.date
+			"image": this.props.image,
+			"website": this.props.website,
+			"location":this.props.location,
+			"email": this.props.email		
 		});
 	}
 	
-	userRef.child("user1").push({			
-			"name": this.state.name,
-			"club": this.state.club
-		});
+	
   }
 
 	render(){

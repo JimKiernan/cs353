@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Accordion, Icon, Image, Segment } from 'semantic-ui-react'
 import './Accordion.css'; 
 import SaveButton from './SaveButton';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Announcements from './Announcements';
 
 
@@ -66,7 +66,7 @@ export default class AccordionDisplay extends Component {
               <h2>{this.props.title}</h2>
              </Link>
             </Segment>
-            <Segment><SaveButton buttonText={this.props.buttonText} country={this.props.country} city={this.props.city} activity={this.props.activity} club={this.props.club} name={this.props.name} date={this.props.date} /></Segment>
+            <Segment><SaveButton buttonText={this.props.buttonText} email={this.props.email} location={this.props.location} website={this.props.website} country={this.props.country} city={this.props.city} activity={this.props.activity} club={this.props.club} name={this.props.name} image={this.props.image} /></Segment>
           </Segment.Group>
        </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>

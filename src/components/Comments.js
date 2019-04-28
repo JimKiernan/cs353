@@ -20,7 +20,7 @@ class Comments extends Component {
 	    }
 	 }
 	 componentDidMount() {
-	  //set up firebase
+	  	//set up firebase
 	    const db = firebase.database();
 	    const rootRef = db.ref();
 	    var newState = [];

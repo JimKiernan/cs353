@@ -41,7 +41,7 @@ class ClubEventPage extends Component {
 			        	<Segment>
 			        		<Segment><h3>Email: {this.props.location.state.email}</h3></Segment>
 			        		<Segment><h3><a href={this.props.location.state.website}>Website</a></h3></Segment>
-			        		  <Segment><h3> Location: {this.props.location.state.location} </h3></Segment>  
+			        		<Segment><h3> Location: {this.props.location.state.location} </h3></Segment>  
 			        	</Segment>
 			        	<Segment>              
 			        		<Announcements userCountry={this.state.userCountry} userCity={this.state.userCity} userActivity={this.state.userActivity} />

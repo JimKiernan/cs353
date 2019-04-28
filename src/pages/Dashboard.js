@@ -17,6 +17,7 @@ import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import CalendarToday from '@material-ui/icons/CalendarToday'
 import firebase from '../firebase.js';
 import {BrowserRouter,Route, Link,Redirect} from 'react-router-dom';
+import SavedClubs from '../components/SavedClubs';
 
 const styles = {
     media: {
@@ -44,15 +45,24 @@ const styles = {
 class Dashboard extends Component {
   constructor(){
     super();
-    if (firebase.auth().currentUser !== null){
-        this.state ={
-             loggedOut:false         
-        };
-    } else{
-      this.state={
-             loggedOut:true       
-        }
+    this.state = {
+      result:[]
     }
+  
+  }
+
+  componentDidMount(){
+      if (firebase.auth().currentUser !== null){
+        this.setState({
+             loggedOut:false     
+        }); 
+      }else{
+            this.setState({
+              loggedOut:true
+            });
+      }
+     
+
   }
   
 
@@ -71,8 +81,8 @@ class Dashboard extends Component {
         <hr style={{width: '30%', marginBottom: '2%'}}/>
 
         <Grid container style={styles.root} spacing={16}>
-        <Grid item xs={12}>
-          <Grid container justify="center" spacing={Number(16)}>
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={Number(16)}>
 
               <Grid item>
                     <Card style={styles.card}>
@@ -94,7 +104,7 @@ class Dashboard extends Component {
                         <CardActions>
                             <Button size="small" variant="outlined" onClick={()=>{this.props.history.push("/create")}}>
                                 Proceed
-                                {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+                             
                                 <TrendingFlat >send</TrendingFlat >
                             </Button>
                         </CardActions>
@@ -121,7 +131,7 @@ class Dashboard extends Component {
                         <CardActions>
                             <Button size="small" variant="outlined" onClick={()=>{this.props.history.push("/allevents")}}>
                                 Proceed
-                                {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+                             
                                 <TrendingFlat >send</TrendingFlat >
                             </Button>
                         </CardActions>
@@ -148,16 +158,17 @@ class Dashboard extends Component {
                         <CardActions>
                             <Button size="small" variant="outlined" onClick={()=>{this.props.history.push("/myevents")}}>
                                 Proceed
-                                {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+                             
                                 <TrendingFlat >send</TrendingFlat >
                             </Button>
                         </CardActions>
                         </Card>
               </Grid>
 
+            </Grid>
           </Grid>
         </Grid>
-        </Grid>
+        <SavedClubs />
 
         
 

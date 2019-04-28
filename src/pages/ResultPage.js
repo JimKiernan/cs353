@@ -88,25 +88,25 @@ render() {
     return (
 
     <div className="results">
-     <h1> Results </h1>
-     {
-         result.length===0 && <div>No results found</div>
-     }
-     { 
-     result.length > 0 && (
-      <Container>
-         
-          <Segment raised>   
-            {this.state.result.map((item) => {
-              return (
-                <AccordionDisplay name={item.name} club={item} country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} alt={item.photo}  image={item.photo} email={item.email} website={item.website} location={item.location} buttonText="Join" />
-               )
-            })}                
-          </Segment> 
-          
-      </Container>)
-    }
-        </div>
+         <h1> Results </h1>
+         {
+             result.length===0 && <div>No results found</div>
+         }
+         { 
+         result.length > 0 && (
+          <Container>
+             
+              <Segment raised>   
+                {this.state.result.map((item) => {
+                  return (
+                    <AccordionDisplay name={item.name} club={item} country={item.country} city={item.city} activity={item.activity} key={item.id} title = {item.name} alt={item.photo}  image={item.photo} email={item.email} website={item.website} location={item.location} buttonText="Join" />
+                   )
+                })}                
+              </Segment> 
+              
+          </Container>)
+        }
+      </div>
       );
     }
   }
