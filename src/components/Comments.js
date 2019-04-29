@@ -29,7 +29,7 @@ class Comments extends Component {
 	    const cityRef = countryRef.child(this.props.userCity);
 	    const activityRef = cityRef.child(this.props.userActivity);
 	    const clubRef = activityRef.child(this.state.name); 
-	    const commentsRef = clubRef.child("Comments")
+	    const commentsRef = clubRef.child("Comments");
 	    //Query database, obtain results
 	    commentsRef.on('value', (snapshot) => {
 	      //var newState = [];
@@ -102,9 +102,9 @@ class Comments extends Component {
 	      result.length > 0 && (
       		<Container>       
          
-            {this.state.result.map((item) => {
+            {this.state.result.map((item, index) => {
               return( 
-              	<Segment>
+              	<Segment key={index}>
 					<Comment>
 						<Comment.Avatar></Comment.Avatar>
 						<Comment.Content>

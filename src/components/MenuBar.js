@@ -111,21 +111,21 @@ class MenuBar extends Component {
             component={Link} to="/"  name='home'>
             Home
           </Button>
-           <Button raised color="inherit" component={Link} to="/login">
+           <Button  color="inherit" component={Link} to="/login">
               Login
           </Button>
 
           <Button color="inherit"  component={Link} to="/dashboard">
               Dashboard
             </Button>
-          <Button raised color="inherit" component={Link} to="/profile" >
+          <Button  color="inherit" component={Link} to="/profile" >
               Profile
           </Button>
           <Typography variant="h6" color="inherit" style={{ flex: 1 }}></Typography>
          
          
           <div>
-            <Button raised color="inherit" onClick={this.signOut}>
+            <Button  color="inherit" onClick={this.signOut}>
               Logout
             </Button>
           </div>

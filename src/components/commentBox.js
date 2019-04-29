@@ -74,10 +74,10 @@ export default class CommentBox extends Component{
 	    	var email;
 	    	var user = firebase.auth().currentUser;
 	    	if (user != null) {
- 			 name = user.displayName;
- 			 email = user.email;
+ 			 // name = user.displayName;
+ 			 // email = user.email;
  			 this.setState({
-	  			username:name,
+	  			username:"",
 	  			
 		    	}); 
  			}
@@ -116,10 +116,10 @@ export default class CommentBox extends Component{
 		return(
 			<div className="results">
 				<Container>
-		            <Form onSubmit={this.handleSubmit}>                 
+		            <Form >                 
 		                <Form.Field>
 		 				<TextArea disabled= {!this.state.loggedin} name="comment" placeholder='Leave a comment' value={this.state.commentText} onChange={this.handleChange} />	
-		 				 <Button color="primary" size="large" variant = "outlined" >Comment</Button>
+		 				 <Button color="primary" size="large" variant = "outlined" onClick={this.handleSubmit} >Comment</Button>
 		 				</Form.Field>
 		 			</Form>
 		 		</Container>

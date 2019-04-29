@@ -47,7 +47,7 @@ class Toast extends React.Component {
           message={<span id="message-id">{this.props.message}</span>}
           action={[
             <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              
+              close
             </Button>,
             <IconButton
               key="close"

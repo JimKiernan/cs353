@@ -85,7 +85,7 @@ export default class AccordionDisplay extends Component {
           <Segment><h2>Location: </h2> <h3> {this.state.location} </h3></Segment>   
 
        </Accordion.Content>
-       <Icon name='plus'  active={activeIndex === 0} index={0} onClick={this.handleClick} />
+       <Icon name='plus'  active={this.state.activeIndex} index={0} onClick={this.handleClick} />
 
     </Accordion>
     );
