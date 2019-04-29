@@ -38,6 +38,7 @@ export default class CommentBox extends Component{
 	   			loggedin:true
 	   		})
 	   }	
+	   console.log("loggedin:" + this.state.loggedin);
 
 	} 
 	 handleChange=function(e,{value}){
@@ -118,7 +119,7 @@ export default class CommentBox extends Component{
 				<Container>
 		            <Form >                 
 		                <Form.Field>
-		 				<TextArea disabled= {!this.state.loggedin} name="comment" placeholder='Leave a comment' value={this.state.commentText} onChange={this.handleChange} />	
+		 				<TextArea disabled={false} name="comment" placeholder='Leave a comment' value={this.state.commentText} onChange={this.handleChange}  />	
 		 				 <Button color="primary" size="large" variant = "outlined" onClick={this.handleSubmit} >Comment</Button>
 		 				</Form.Field>
 		 			</Form>
