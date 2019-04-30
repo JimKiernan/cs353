@@ -22,6 +22,19 @@ export default class CommentBox extends Component{
     	this.handleChange = this.handleChange.bind(this);
 
 	}
+	componentWillMount(){
+		const db = firebase.database();
+	    const rootRef = db.ref();
+	    if (firebase.auth().currentUser){
+	    	console.log(firebase.auth().currentUser);
+	   		this.setState({
+	   			loggedin:true
+	   		});
+	   		console.log("loggedin:" + this.state.loggedin);
+	   }	
+	   
+
+	}
 	componentDidMount() {
 		 //set up firebase
 	    const db = firebase.database();
@@ -33,12 +46,7 @@ export default class CommentBox extends Component{
 	    const activityRef = cityRef.child(this.props.userActivity);
 	   //const commentRef = cityRef.child('Comments');
 
-	   if (firebase.auth().currentUser !== null){
-	   		this.setState({
-	   			loggedin:true
-	   		})
-	   }	
-	   console.log("loggedin:" + this.state.loggedin);
+	   
 
 	} 
 	 handleChange=function(e,{value}){
@@ -115,7 +123,12 @@ export default class CommentBox extends Component{
 	render(){
 
 		return(
-			<div className="results">
+			<div className="input">
+			{
+             this.state.loggedin===false && <div></div>
+         	}
+         	{ this.state.loggedin===true &&(
+         	<div>
 				<Container>
 		            <Form >                 
 		                <Form.Field>
@@ -124,7 +137,11 @@ export default class CommentBox extends Component{
 		 				</Form.Field>
 		 			</Form>
 		 		</Container>
-		 	</div>
+		 		</div>
+		 	
+		 	)		 	
+		 }
+		 </div>
 	 	);
  	}
 

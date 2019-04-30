@@ -46,7 +46,8 @@ class Dashboard extends Component {
   constructor(){
     super();
     this.state = {
-      result:[]
+      result:[], 
+
     }
   
   }
@@ -56,12 +57,13 @@ class Dashboard extends Component {
         this.setState({
              loggedOut:false     
         }); 
+        console.log("loggedout:" +this.state.loggedOut);
       }else{
             this.setState({
               loggedOut:true
             });
       }
-     
+     console.log("loggedout:" +this.state.loggedOut);
 
   }
   
