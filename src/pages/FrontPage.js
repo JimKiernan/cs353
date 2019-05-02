@@ -48,31 +48,38 @@ class FrontPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-     console.log("state is: "+ this.state.userCity);
+    // if(e.target.value!="" && e.target.value!=" " && e.target.value!=null){
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+       console.log("userCity is: "+ this.state.userCity);
+     // }
   }
    handleCountryChange=function(e,{value}){
-     this.setState({userCountry:value});
-     console.log("state is: "+ this.state.userCountry);
+     if(value!="" && value!=" " && value!=null){
+       this.setState({userCountry:value});
+       console.log("userCountry is: "+ this.state.userCountry);
    }
-
+}
    handleActivityChange=function(e, {value}) {
-    this.setState({
-      userActivity: value
-    });
-     console.log("state is: "+ this.state.userCity);
+     if(value!="" && value!=" " && value!=null){
+        this.setState({
+          userActivity: value
+        });
+         console.log("userActivity is: "+ this.state.userActivity);
+      }
   }
   handleSubmit(e) {
     e.preventDefault();
-    const userCountry = this.state.userCountry;
-    const userCity = this.state.userCity;
-    const userActivity = this.state.userActivity;
-    //need to check if the user has inputted values first
-    this.setState({
-      toResults: true
-    });
+    if(this.state.userCountry!="" && this.state.userCity!="" && this.state.userActivity!=""){
+      const userCountry = this.state.userCountry;
+      const userCity = this.state.userCity;
+      const userActivity = this.state.userActivity;
+      //need to check if the user has inputted values first
+      this.setState({
+        toResults: true
+      });
+     } 
   }    
   
   //call the results page <Results /> with prop this.state.userCity, userCountry & userAcitivity
