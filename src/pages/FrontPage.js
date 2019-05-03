@@ -79,7 +79,9 @@ class FrontPage extends Component {
       this.setState({
         toResults: true
       });
-     } 
+     } else{
+       alert("Please enter a value for each field")
+     }
   }    
   
   //call the results page <Results /> with prop this.state.userCity, userCountry & userAcitivity
