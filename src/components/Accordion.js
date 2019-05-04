@@ -81,7 +81,7 @@ export default class AccordionDisplay extends Component {
             </Segment>                          
 	        </Segment.Group>
           <Segment><h2>Email:</h2><h3> {this.props.email} </h3></Segment>   
-          <Segment><h2><a href={this.props.website}>Website</a></h2></Segment>   
+          <Segment><h2><a target="_blank" href={"http://"+this.props.website}>Website</a></h2></Segment>   
           <Segment><h2>Location: </h2> <h3> {this.state.location} </h3></Segment>   
 
        </Accordion.Content>

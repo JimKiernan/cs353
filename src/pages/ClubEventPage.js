@@ -19,14 +19,25 @@ class ClubEventPage extends Component {
 				email: this.props.location.state.email,
 				location: this.props.location.state.location,
 				website: this.props.location.state.website,
-				image: this.props.location.state.image
+				image: this.props.location.state.image,
+				loggedin:false
 
 			}
+			
 		}
 
 		componentDidMount(){
 			
-			console.log("Inside club event page: " +this.state.userCountry, this.state.userCity, this.state.userActivity)
+			console.log("Inside club event page: " +this.state.userCountry, this.state.userCity, this.state.userActivity);
+			 if (firebase.auth().currentUser !== null){
+		        this.setState({
+		             loggedin:false     
+		        }); 
+		 	 }else{
+		        this.setState({
+		          loggedin:true
+		        });
+		  	}
 		}
 		render() {
  
@@ -45,7 +56,7 @@ class ClubEventPage extends Component {
 				        	</Segment>
 				        	<Segment>
 				        		<Segment><h3>Email: {this.props.location.state.email}</h3></Segment>
-				        		<Segment><h3><a href={this.props.location.state.website}>Website</a></h3></Segment>
+				        		<Segment><h3><a target="_blank"  href={"http://"+this.props.location.state.website}>Website</a></h3></Segment>
 				        		<Segment><h3> Location: {this.props.location.state.location} </h3></Segment>  
 				        	</Segment>
 				        	<Segment>              
