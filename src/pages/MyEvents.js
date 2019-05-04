@@ -96,7 +96,7 @@ notGoing = (eventId, Userid) => {
                     <CardActionArea>
                         <CardMedia
                         style={styles.media}
-                        // image={require("../images/event.jpg")}
+                        image={process.env.PUBLIC_URL+"/img/event.jpg"}
                         title="Contemplative Reptile"
                         />
                         <CardContent>
