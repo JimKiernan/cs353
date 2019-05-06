@@ -60,23 +60,23 @@ class AllEvents extends Component {
         let that = this;
         let allevents = [];
 
+        
+          database.child("events").on("value", function(snapshot){
 
-        database.child("events").on("value", function(snapshot){
+              snapshot.forEach(function(childSnapshot) {
+                  var obj = childSnapshot.val();
+                  obj.id = childSnapshot.key;
 
-            snapshot.forEach(function(childSnapshot) {
-                var obj = childSnapshot.val();
-                obj.id = childSnapshot.key;
+                  allevents.push(obj);
 
-                allevents.push(obj);
-
-              });
-              that.setState({
-                allevents: allevents,
-              },()=>{
-                console.log("All Events",allevents)
-                 that.setState({loader: false})
-              });
-            })
+                });
+                that.setState({
+                  allevents: allevents,
+                },()=>{
+                  console.log("All Events",allevents)
+                   that.setState({loader: false})
+                });
+              })
              
     }
 

@@ -47,33 +47,53 @@ componentDidMount(){
     let that = this;
     let allevents = [];
 
+    if (firebase.auth().currentUser !== null){
+      database.child("myevents").child(firebase.auth().currentUser.uid).on("value", function(snapshot){
 
-    database.child("myevents").child(firebase.auth().currentUser.uid).on("value", function(snapshot){
+          snapshot.forEach(function(childSnapshot) {
+              var obj = childSnapshot.val();
+              obj.id = childSnapshot.key;
 
-        snapshot.forEach(function(childSnapshot) {
-            var obj = childSnapshot.val();
-            obj.id = childSnapshot.key;
+              allevents.push(obj);
 
-            allevents.push(obj);
-
-          });
-          that.setState({
-            allevents: allevents,
-          },()=>{
-            console.log("All Events",allevents)
-             that.setState({loader: false})
-          });
-        })
+            });
+            that.setState({
+              allevents: allevents,
+            },()=>{
+              console.log("All Events",allevents)
+               that.setState({loader: false})
+            });
+          })
+    }
 
 }
 
 notGoing = (eventId, Userid) => {
-  // let that = this;
+  let that = this;
+  let allevents = [];
   // let newArray = [];
-  database.child('myevents').child(Userid).child(eventId).remove()
-  .then(()=>{  
-    alert("You unfollowed the event now");
-  });
+  if (firebase.auth().currentUser !== null){
+    database.child('myevents').child(Userid).child(eventId).remove()
+    .then(()=>{  
+      alert("You unfollowed the event now");
+      database.child("myevents").child(firebase.auth().currentUser.uid).on("value", function(snapshot){
+
+          snapshot.forEach(function(childSnapshot) {
+              var obj = childSnapshot.val();
+              obj.id = childSnapshot.key;
+
+              allevents.push(obj);
+
+            });
+            that.setState({
+              allevents: allevents,
+            },()=>{
+              console.log("All Events",allevents)
+               that.setState({loader: false})
+            });
+          })
+    });
+  }
 
 }
 

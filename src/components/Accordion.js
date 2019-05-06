@@ -75,14 +75,18 @@ export default class AccordionDisplay extends Component {
         <Accordion.Content active={activeIndex === 0}>
 	        <Segment.Group horizontal>
 	        	<Segment> <img alt = {this.props.alt} src={process.env.PUBLIC_URL + '/img/' + this.props.image} /> </Segment>
-	          
-            <Segment>
-              <Announcements userCountry={this.props.country} userCity={this.props.city} userActivity={this.props.activity} />
-            </Segment>                          
+             <Segment>
+	              <Segment vertical><h2>Email:</h2><h3> {this.props.email} </h3></Segment>   
+                <Segment vertical><h2><a target="_blank" href={"http://"+this.props.website}>Website</a></h2></Segment>   
+                <Segment vertical><h2>Location: </h2> <h3> {this.state.location} </h3></Segment>     
+              </Segment>
 	        </Segment.Group>
-          <Segment><h2>Email:</h2><h3> {this.props.email} </h3></Segment>   
-          <Segment><h2><a target="_blank" href={"http://"+this.props.website}>Website</a></h2></Segment>   
-          <Segment><h2>Location: </h2> <h3> {this.state.location} </h3></Segment>   
+           <Segment >
+              <Announcements userCountry={this.props.country} userCity={this.props.city} userActivity={this.props.activity} />
+            </Segment>  
+                        
+
+       
 
        </Accordion.Content>
        <Icon name='plus'  active={this.state.activeIndex} index={0} onClick={this.handleClick} />

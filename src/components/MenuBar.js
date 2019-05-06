@@ -78,6 +78,7 @@ class MenuBar extends Component {
           loggedOut:true
         })
       }
+      
    }
      
 

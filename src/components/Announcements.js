@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Message } from 'semantic-ui-react';
+import { Message, Container } from 'semantic-ui-react';
 import firebase from '../firebase.js';
 
  class Announcements extends Component {
@@ -31,7 +31,7 @@ import firebase from '../firebase.js';
 	    	 	var ref = activityRef.child(item);
 	    		//var announcementsRef = ref.child("Announcements");
 	    		ref.on("value", function(snapshot) {
-	    			var ref2 = snapshot.child("Announcements/1")
+	    			var ref2 = snapshot.child("Announcements/1");
 	    			 announcement = ref2.val();
 		    		
 		    		console.log("Announcement is: "+ announcement);
@@ -50,10 +50,11 @@ import firebase from '../firebase.js';
 
   render(){
   	return(
-  		 <Message floating color='black'
+  		<Message  size='big' compact floating color='black'
   		   	header="Announcements"
   		   	content={this.state.current}
-  		  />
+  		  /> 
+  		  
   	);
   }
 }
